@@ -15,7 +15,7 @@ object ParseCSVFile {
         documentLine <- documents
         regularExpression(document, documentClass) = documentLine
       } yield DocumentInfo(document, documentClass)
-    }.toEither.fold(_ => {
+    }.fold(_ => {
       println("Ошибка чтения документа для обучения.")
       sys.exit(1)
     }, docs => docs.toArray)
