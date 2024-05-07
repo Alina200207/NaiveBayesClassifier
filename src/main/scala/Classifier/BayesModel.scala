@@ -15,5 +15,5 @@ class BayesModel(wordInClassCount: HashMap[String, HashMap[String, Int]],
     math.log(docsInClassCount(cl) / docsInClassCount.values.sum)
   }
 
-  def getClasses(): Set[String] = sumCountWordsInClass.keySet
+  def getClasses: Set[String] = sumCountWordsInClass.keySet
 }
