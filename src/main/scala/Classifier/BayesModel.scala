@@ -2,10 +2,10 @@ package Classifier
 
 import scala.collection.immutable.HashMap
 
-class BayesModel(wordInClassCount: HashMap[String, HashMap[String, Int]],
+class BayesModel(wordInClassCount: Map[String, Map[String, Int]],
                  uniqueWordsCount: Int,
-                 docsInClassCount: HashMap[String, Int],
-                 sumCountWordsInClass: HashMap[String, Int]
+                 docsInClassCount: Map[String, Int],
+                 sumCountWordsInClass: Map[String, Int]
                 ) {
   def wordLogarithmicProbability(cl: String, word: String): Double = {
     math.log((wordInClassCount(cl).getOrElse(word, 0) + 1) / (uniqueWordsCount + sumCountWordsInClass(cl)))

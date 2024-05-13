@@ -1,9 +1,9 @@
 package Classifier
 
-class BayesClassifier(model: BayesModel) {
-  private def tokenize(text: String): Array[String] = text.split(' ')
+import Classifier.Utils.ExpandString
 
-  private def calculateProbability(cl: String, text: String): Double = model.classLogarithmicProbability(cl) + tokenize(text).map(model.wordLogarithmicProbability(cl, _)).sum
+class BayesClassifier(model: BayesModel) {
+  private def calculateProbability(cl: String, text: String): Double = model.classLogarithmicProbability(cl) + text.words.map(model.wordLogarithmicProbability(cl, _)).sum
 
   def classify(text: String): (String, Double) = {
     val classLogarithmicProbability = model.getClasses.toSeq.map(cl => (cl, calculateProbability(cl, text)))
